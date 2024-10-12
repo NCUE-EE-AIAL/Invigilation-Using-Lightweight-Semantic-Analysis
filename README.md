@@ -42,6 +42,29 @@ The system operates in two examination environments:
    - Utilizes both **fixed and dynamic cameras** to capture contraband and student movements.
    - A dynamic camera, often mounted on a **robot**, navigates to monitor the entire room.
 
+## 🧩 Flow Diagram for Action Detection
+Below is the flow diagram representing the algorithm used for action detection in traditional examination settings. It shows how **face identification**, **object detection**, **segmentation**, and **pixel analysis** are utilized to detect irregular actions, such as mismatched student identities, the presence of contraband, and suspicious movements.
+
+```mermaid
+graph TD
+    A[Real-time Image] --> B(Face Identification)
+    A --> C(Object Detection - Extends)
+    A --> D(Segmentation)
+    B --> E{Student ID different with face}
+    E -->|Yes| F[Warn]
+    E -->|No| G{Contraband Exist}
+    G -->|Yes| F
+    G -->|No| H[Pass & Return]
+    D --> I[Pixel Algorithm]
+    I --> J{People label attach Boundary}
+    J -->|No| K{Eyes boundary From 2 to 1 (Turn around)}
+    K -->|Yes| F
+    K -->|No| H
+    J -->|Yes| F
+```
+
+The flow diagram provides a comprehensive overview of the steps taken during real-time monitoring, highlighting key decision points to detect and respond to potential cheating behaviors.
+
 ## 📊 Results
 - **Semantic Segmentation**: Achieved high accuracy in delineating full human bodies and detecting hands in real-time.
 - **Facial Classification**: ShuffleNet V2 effectively identified students in examination scenarios, even with limited training data.
