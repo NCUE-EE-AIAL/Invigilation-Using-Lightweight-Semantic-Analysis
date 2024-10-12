@@ -52,12 +52,12 @@ graph TD
     A --> D(Segmentation)
     B --> E{Student ID different with face}
     E -->|Yes| F[Warn]
-    E -->|No| G{Contraband Exist}
+    E -->|No| G{Contraband Exists}
     G -->|Yes| F
     G -->|No| H[Pass & Return]
     D --> I[Pixel Algorithm]
     I --> J{People label attach Boundary}
-    J -->|No| K{Eyes boundary From 2 to 1 (Turn around)}
+    J -->|No| K{Eyes boundary from 2 to 1 (Turn around)}
     K -->|Yes| F
     K -->|No| H
     J -->|Yes| F
